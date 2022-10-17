@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME_ROOT=electrum-ltc
+NAME_ROOT=electrum-cesc
 
 # These settings probably don't need any change
 export WINEPREFIX=/opt/wine64
@@ -19,7 +19,7 @@ here="$(dirname "$(readlink -e "$0")")"
 
 . "$CONTRIB"/build_tools_util.sh
 
-pushd $WINEPREFIX/drive_c/electrum-ltc
+pushd $WINEPREFIX/drive_c/electrum-cesc
 
 VERSION=`git describe --tags --dirty --always`
 info "Last commit: $VERSION"
@@ -27,12 +27,12 @@ info "Last commit: $VERSION"
 # Load electrum-locale for this release
 git submodule update --init
 
-pushd ./contrib/deterministic-build/electrum-ltc-locale
+pushd ./contrib/deterministic-build/electrum-cesc-locale
 if ! which msgfmt > /dev/null 2>&1; then
     fail "Please install gettext"
 fi
 for i in ./locale/*; do
-    dir=$WINEPREFIX/drive_c/electrum-ltc/electrum_ltc/$i/LC_MESSAGES
+    dir=$WINEPREFIX/drive_c/electrum-cesc/electrum_cesc/$i/LC_MESSAGES
     mkdir -p $dir
     msgfmt --output-file=$dir/electrum.mo $i/electrum.po || true
 done
@@ -46,7 +46,7 @@ $PYTHON -m pip install --no-warn-script-location -r "$CONTRIB"/deterministic-bui
 
 $PYTHON -m pip install --no-warn-script-location -r "$CONTRIB"/deterministic-build/requirements-hw.txt
 
-pushd $WINEPREFIX/drive_c/electrum-ltc
+pushd $WINEPREFIX/drive_c/electrum-cesc
 # see https://github.com/pypa/pip/issues/2195 -- pip makes a copy of the entire directory
 info "Pip installing Electrum. This might take a long time if the project folder is large."
 $PYTHON -m pip install --no-dependencies --no-warn-script-location .
