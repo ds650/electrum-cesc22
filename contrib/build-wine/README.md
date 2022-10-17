@@ -20,7 +20,7 @@ folder.
 2. Build image
 
     ```
-    $ sudo docker build -t electrum-ltc-wine-builder-img contrib/build-wine
+    $ sudo docker build -t electrum-cesc-wine-builder-img contrib/build-wine
     ```
 
     Note: see [this](https://stackoverflow.com/a/40516974/7499128) if having dns problems
@@ -35,19 +35,19 @@ folder.
         sudo rm -rf $FRESH_CLONE && \
         mkdir -p $FRESH_CLONE && \
         cd $FRESH_CLONE  && \
-        git clone https://github.com/pooler/electrum-ltc.git && \
-        cd electrum-ltc
+        git clone https://github.com/ds650/electrum-cesc22.git && \
+        cd electrum-cesc
     ```
 
     And then build from this directory:
     ```
     $ git checkout $REV
     $ sudo docker run -it \
-        --name electrum-ltc-wine-builder-cont \
-        -v $PWD:/opt/wine64/drive_c/electrum-ltc \
+        --name electrum-cesc-wine-builder-cont \
+        -v $PWD:/opt/wine64/drive_c/electrum-cesc \
         --rm \
-        --workdir /opt/wine64/drive_c/electrum-ltc/contrib/build-wine \
-        electrum-ltc-wine-builder-img \
+        --workdir /opt/wine64/drive_c/electrum-cesc/contrib/build-wine \
+        electrum-cesc-wine-builder-img \
         ./build.sh
     ```
 4. The generated binaries are in `./contrib/build-wine/dist`.
@@ -57,7 +57,7 @@ folder.
 Code Signing
 ============
 
-Electrum-LTC Windows builds are signed with a Microsoft Authenticode™ code signing
+Electrum-CESC Windows builds are signed with a Microsoft Authenticode™ code signing
 certificate in addition to the GPG-based signatures.
 
 The advantage of using Authenticode is that Electrum-LTC users won't receive a 
@@ -78,7 +78,7 @@ certificate/key) and one or multiple trusted verifiers:
 
 | Signer and verifiers:                                                                         |
 |-----------------------------------------------------------------------------------------------|
-| Upload signatures to 'electrum-ltc-signatures' repo, as `$version/$filename.$builder.asc`         |
+| Upload signatures to 'electrum-cesc-signatures' repo, as `$version/$filename.$builder.asc`         |
 
 
 
