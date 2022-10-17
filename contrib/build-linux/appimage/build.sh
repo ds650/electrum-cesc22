@@ -7,7 +7,7 @@ CONTRIB="$PROJECT_ROOT/contrib"
 CONTRIB_APPIMAGE="$CONTRIB/build-linux/appimage"
 DISTDIR="$PROJECT_ROOT/dist"
 BUILDDIR="$CONTRIB_APPIMAGE/build/appimage"
-APPDIR="$BUILDDIR/electrum-ltc.AppDir"
+APPDIR="$BUILDDIR/electrum-cesc.AppDir"
 CACHEDIR="$CONTRIB_APPIMAGE/.cache/appimage"
 
 # pinned versions
@@ -18,7 +18,7 @@ SQUASHFSKIT_COMMIT="ae0d656efa2d0df2fcac795b6823b44462f19386"
 
 
 VERSION=`git describe --tags --dirty --always`
-APPIMAGE="$DISTDIR/electrum-ltc-$VERSION-x86_64.AppImage"
+APPIMAGE="$DISTDIR/electrum-cesc-$VERSION-x86_64.AppImage"
 
 . "$CONTRIB"/build_tools_util.sh
 
@@ -119,12 +119,12 @@ info "preparing electrum-locale."
     cd "$PROJECT_ROOT"
     git submodule update --init
 
-    pushd "$CONTRIB"/deterministic-build/electrum-ltc-locale
+    pushd "$CONTRIB"/deterministic-build/electrum-cesc-locale
     if ! which msgfmt > /dev/null 2>&1; then
         fail "Please install gettext"
     fi
     for i in ./locale/*; do
-        dir="$PROJECT_ROOT/electrum_ltc/$i/LC_MESSAGES"
+        dir="$PROJECT_ROOT/electrum_cesc/$i/LC_MESSAGES"
         mkdir -p $dir
         msgfmt --output-file="$dir/electrum.mo" "$i/electrum.po" || true
     done
@@ -145,8 +145,8 @@ cp "/usr/lib/x86_64-linux-gnu/libzbar.so.0" "$APPDIR/usr/lib/libzbar.so.0"
 
 
 info "desktop integration."
-cp "$PROJECT_ROOT/electrum-ltc.desktop" "$APPDIR/electrum-ltc.desktop"
-cp "$PROJECT_ROOT/electrum_ltc/gui/icons/electrum-ltc.png" "$APPDIR/electrum-ltc.png"
+cp "$PROJECT_ROOT/electrum-cesc.desktop" "$APPDIR/electrum-cesc.desktop"
+cp "$PROJECT_ROOT/electrum_cesc/gui/icons/electrum-cesc.png" "$APPDIR/electrum-cesc.png"
 
 
 # add launcher
