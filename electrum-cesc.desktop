@@ -1,0 +1,22 @@
+# If you want Electrum to appear in a Linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum-cesc.desktop
+
+[Desktop Entry]
+Comment=Lightweight Cryptoescudo Client
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum-cesc %u"
+GenericName[en_US]=Cryptoescudo Wallet
+GenericName=Cryptoescudo Wallet
+Icon=electrum-cesc
+Name[en_US]=Electrum Cryptoescudo Wallet
+Name=Electrum Cryptoescudo Wallet
+Categories=Finance;Network;
+StartupNotify=true
+StartupWMClass=electrum-CESC
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/Cryptoescudo;
+Actions=Testnet;
+
+[Desktop Action Testnet]
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum-cesc --testnet %u"
+Name=Testnet mode

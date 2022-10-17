@@ -1,7 +1,7 @@
-Electrum-LTC - Lightweight Litecoin client
+Electrum-CESC - Lightweight Cryptoescudo client
 ==========================================
 
-Electrum-LTC is a port of Electrum, the Bitcoin wallet, to Litecoin.
+Electrum-CESC is a port of Electrum, the Litecoin wallet, to Cryptoescudo.
 
 ::
 
@@ -19,30 +19,30 @@ Electrum-LTC is a port of Electrum, the Bitcoin wallet, to Litecoin.
 Getting started
 ===============
 
-Electrum-LTC is a pure python application. If you want to use the
+Electrum-CESC is a pure python application. If you want to use the
 Qt interface, install the Qt dependencies::
 
     sudo apt-get install python3-pyqt5
 
 If you downloaded the official package (tar.gz), you can run
-Electrum-LTC from its root directory without installing it on your
+Electrum-CESC from its root directory without installing it on your
 system; all the python dependencies are included in the 'packages'
-directory. To run Electrum-LTC from its root directory, just do::
+directory. To run Electrum-CESC from its root directory, just do::
 
     ./run_electrum
 
-You can also install Electrum-LTC on your system, by running this command::
+You can also install Electrum-CESC on your system, by running this command::
 
     sudo apt-get install python3-setuptools
     python3 -m pip install .[fast]
 
 This will download and install the Python dependencies used by
-Electrum-LTC instead of using the 'packages' directory.
+Electrum-CESC instead of using the 'packages' directory.
 The 'fast' extra contains some optional dependencies that we think
 are often useful but they are not strictly needed.
 
 If you cloned the git repository, you need to compile extra files
-before you can run Electrum-LTC. Read the next section, "Development
+before you can run Electrum-CESC. Read the next section, "Development
 Version".
 
 
@@ -52,8 +52,8 @@ Development version
 
 Check out the code from GitHub::
 
-    git clone git://github.com/pooler/electrum-ltc.git
-    cd electrum-ltc
+    git clone git://github.com/ds650/electrum-cesc.git
+    cd electrum-cesc
     git submodule update --init
 
 Run install (this should install dependencies)::
@@ -64,7 +64,7 @@ Run install (this should install dependencies)::
 Compile the protobuf description file::
 
     sudo apt-get install protobuf-compiler
-    protoc --proto_path=electrum_ltc --python_out=electrum_ltc electrum_ltc/paymentrequest.proto
+    protoc --proto_path=electrum_cesc --python_out=electrum_cesc electrum_cesc/paymentrequest.proto
 
 Create translations (optional)::
 
@@ -104,4 +104,4 @@ See :code:`contrib/build-wine/README.md`.
 Android
 -------
 
-See :code:`electrum_ltc/gui/kivy/Readme.md`.
+See :code:`electrum_cesc/gui/kivy/Readme.md`.

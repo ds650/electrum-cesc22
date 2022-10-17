@@ -18,7 +18,7 @@ install:
 cache:
   - pip: true
   - directories:
-    - /tmp/electrum-ltc-build
+    - /tmp/electrum-cesc-build
 script:
     - tox
 after_success:
@@ -30,15 +30,15 @@ jobs:
       before_install:
         - sudo add-apt-repository -y ppa:litecoin-project/litecoin
         - sudo apt-get -qq update
-        - sudo apt-get install -yq litecoind
+        - sudo apt-get install -yq cryptoescudod
       install:
         - pip install -r contrib/requirements/requirements.txt
         - pip install electrumx
       before_script:
-          - electrum_ltc/tests/regtest/start_bitcoind.sh
-          - electrum_ltc/tests/regtest/start_electrumx.sh
+          - electrum_cesc/tests/regtest/start_bitcoind.sh
+          - electrum_cesc/tests/regtest/start_electrumx.sh
       script:
-        - python -m unittest electrum_ltc/tests/regtest.py
+        - python -m unittest electrum_cesc/tests/regtest.py
       after_success: True
     - name: "Flake8 linter tests"
       language: python
@@ -54,9 +54,9 @@ jobs:
       services:
         - docker
       install:
-        - sudo docker build --no-cache -t electrum-ltc-wine-builder-img ./contrib/build-wine/
+        - sudo docker build --no-cache -t electrum-cesc-wine-builder-img ./contrib/build-wine/
       script:
-        - sudo docker run --name electrum-ltc-wine-builder-cont -v $PWD:/opt/wine64/drive_c/electrum-ltc --rm --workdir /opt/wine64/drive_c/electrum-ltc/contrib/build-wine electrum-ltc-wine-builder-img ./build.sh
+        - sudo docker run --name electrum-cesc-wine-builder-cont -v $PWD:/opt/wine64/drive_c/electrum-cesc --rm --workdir /opt/wine64/drive_c/electrum-cesc/contrib/build-wine electrum-cesc-wine-builder-img ./build.sh
       after_success: true
     - if: branch = master
       name: "Android build"
@@ -67,7 +67,7 @@ jobs:
       install:
         - pip install requests && ./contrib/pull_locale
         - ./contrib/make_packages
-        - sudo docker build --no-cache -t electrum-android-builder-img electrum_ltc/gui/kivy/tools
+        - sudo docker build --no-cache -t electrum-android-builder-img electrum_cesc/gui/kivy/tools
       script:
         - sudo chown -R 1000:1000 .
         # Output something every minute or Travis kills the job
@@ -97,9 +97,9 @@ jobs:
       services:
         - docker
       install:
-        - sudo docker build --no-cache -t electrum-ltc-appimage-builder-img ./contrib/build-linux/appimage/
+        - sudo docker build --no-cache -t electrum-cesc-appimage-builder-img ./contrib/build-linux/appimage/
       script:
-        - sudo docker run --name electrum-ltc-appimage-builder-cont -v $PWD:/opt/electrum-ltc --rm --workdir /opt/electrum-ltc/contrib/build-linux/appimage electrum-ltc-appimage-builder-img ./build.sh
+        - sudo docker run --name electrum-cesc-appimage-builder-cont -v $PWD:/opt/electrum-cesc --rm --workdir /opt/electrum-cesc/contrib/build-linux/appimage electrum-cesc-appimage-builder-img ./build.sh
       after_success: true
     - stage: release check
       install:

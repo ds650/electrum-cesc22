@@ -26,7 +26,7 @@ with open('contrib/requirements/requirements-hw.txt') as f:
     requirements_hw = f.read().splitlines()
 
 # load version.py; needlessly complicated alternative to "imp.load_source":
-version_spec = importlib.util.spec_from_file_location('version', 'electrum_ltc/version.py')
+version_spec = importlib.util.spec_from_file_location('version', 'electrum_cesc/version.py')
 version_module = version = importlib.util.module_from_spec(version_spec)
 version_spec.loader.exec_module(version_module)
 
@@ -46,8 +46,8 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-ltc.desktop']),
-        (os.path.join(usr_share, icons_dirname), ['electrum_ltc/gui/icons/electrum-ltc.png']),
+        (os.path.join(usr_share, 'applications/'), ['electrum-cesc.desktop']),
+        (os.path.join(usr_share, icons_dirname), ['electrum_cesc/gui/icons/electrum-cesc.png']),
     ]
 
 extras_require = {
@@ -58,36 +58,36 @@ extras_require['full'] = [pkg for sublist in list(extras_require.values()) for p
 
 
 setup(
-    name="Electrum-LTC",
+    name="Electrum-CESC",
     version=version.ELECTRUM_VERSION,
     python_requires='>={}'.format(MIN_PYTHON_VERSION),
     install_requires=requirements,
     extras_require=extras_require,
     packages=[
-        'electrum_ltc',
-        'electrum_ltc.gui',
-        'electrum_ltc.gui.qt',
-        'electrum_ltc.plugins',
-    ] + [('electrum_ltc.plugins.'+pkg) for pkg in find_packages('electrum_ltc/plugins')],
+        'electrum_cesc',
+        'electrum_cesc.gui',
+        'electrum_cesc.gui.qt',
+        'electrum_cesc.plugins',
+    ] + [('electrum_cesc.plugins.'+pkg) for pkg in find_packages('electrum_cesc/plugins')],
     package_dir={
-        'electrum_ltc': 'electrum_ltc'
+        'electrum_cesc': 'electrum_cesc'
     },
     package_data={
         '': ['*.txt', '*.json', '*.ttf', '*.otf'],
-        'electrum_ltc': [
+        'electrum_cesc': [
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ],
-        'electrum_ltc.gui': [
+        'electrum_cesc.gui': [
             'icons/*',
         ],
     },
-    scripts=['electrum_ltc/electrum-ltc'],
+    scripts=['electrum_cesc/electrum-cesc'],
     data_files=data_files,
     description="Lightweight Litecoin Wallet",
     author="Thomas Voegtlin",
     author_email="thomasv@electrum.org",
     license="MIT Licence",
-    url="https://electrum-ltc.org",
+    url="https://electrum-cesc.org",
     long_description="""Lightweight Litecoin Wallet""",
 )

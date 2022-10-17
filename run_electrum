@@ -38,7 +38,7 @@ if sys.version_info[:3] < _min_python_version_tuple:
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 is_bundle = getattr(sys, 'frozen', False)
-is_local = not is_bundle and os.path.exists(os.path.join(script_dir, "electrum-ltc.desktop"))
+is_local = not is_bundle and os.path.exists(os.path.join(script_dir, "electrum-cesc.desktop"))
 is_android = 'ANDROID_DATA' in os.environ
 
 if is_local:  # running from source
@@ -46,7 +46,7 @@ if is_local:  # running from source
     warnings.simplefilter('default', DeprecationWarning)
 
 # move this back to gui/kivy/__init.py once plugins are moved
-os.environ['KIVY_DATA_DIR'] = os.path.abspath(os.path.dirname(__file__)) + '/electrum_ltc/gui/kivy/data/'
+os.environ['KIVY_DATA_DIR'] = os.path.abspath(os.path.dirname(__file__)) + '/electrum_cesc/gui/kivy/data/'
 
 if is_local or is_android:
     sys.path.insert(0, os.path.join(script_dir, 'packages'))
@@ -77,18 +77,18 @@ if not is_android:
     check_imports()
 
 
-from electrum_ltc.logging import get_logger, configure_logging
-from electrum_ltc import util
-from electrum_ltc import constants
-from electrum_ltc import SimpleConfig
-from electrum_ltc.wallet import Wallet
-from electrum_ltc.storage import WalletStorage, get_derivation_used_for_hw_device_encryption
-from electrum_ltc.util import print_msg, print_stderr, json_encode, json_decode, UserCancelled
-from electrum_ltc.util import InvalidPassword
-from electrum_ltc.commands import get_parser, known_commands, Commands, config_variables
-from electrum_ltc import daemon
-from electrum_ltc import keystore
-from electrum_ltc.util import create_and_start_event_loop
+from electrum_cesc.logging import get_logger, configure_logging
+from electrum_cesc import util
+from electrum_cesc import constants
+from electrum_cesc import SimpleConfig
+from electrum_cesc.wallet import Wallet
+from electrum_cesc.storage import WalletStorage, get_derivation_used_for_hw_device_encryption
+from electrum_cesc.util import print_msg, print_stderr, json_encode, json_decode, UserCancelled
+from electrum_cesc.util import InvalidPassword
+from electrum_cesc.commands import get_parser, known_commands, Commands, config_variables
+from electrum_cesc import daemon
+from electrum_cesc import keystore
+from electrum_cesc.util import create_and_start_event_loop
 
 _logger = get_logger(__name__)
 
@@ -125,7 +125,7 @@ def init_cmdline(config_options, wallet_path, server):
 
     if cmd.requires_wallet and not storage.file_exists():
         print_msg("Error: Wallet file not found.")
-        print_msg("Type 'electrum-ltc create' to create a new wallet, or provide a path to a wallet with the -w option")
+        print_msg("Type 'electrum-cesc create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys_exit(1)
 
     # important warning
@@ -243,7 +243,7 @@ async def run_offline_command(config, config_options, plugins):
 
 
 def init_plugins(config, gui_name):
-    from electrum_ltc.plugin import Plugins
+    from electrum_cesc.plugin import Plugins
     return Plugins(config, gui_name)
 
 def sys_exit(i):
@@ -312,7 +312,7 @@ if __name__ == '__main__':
         config_options['portable'] = True
 
     if config_options.get('portable'):
-        config_options['electrum_path'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-ltc_data')
+        config_options['electrum_path'] = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-cesc_data')
 
     if not config_options.get('verbosity'):
         warnings.simplefilter('ignore', DeprecationWarning)
@@ -337,7 +337,7 @@ if __name__ == '__main__':
         raise Exception('lightning option not available on mainnet')
 
     if config.get('lightning'):
-        from electrum_ltc.ecc_fast import is_using_fast_ecc
+        from electrum_cesc.ecc_fast import is_using_fast_ecc
         if not is_using_fast_ecc():
             raise Exception('libsecp256k1 library not available. '
                             'Verifying Lightning channels is too computationally expensive without libsecp256k1, aborting.')
@@ -398,7 +398,7 @@ if __name__ == '__main__':
             try:
                 result = daemon.request(config, 'run_cmdline', (config_options,), timeout)
             except daemon.DaemonNotRunning:
-                print_msg("Daemon not running; try 'electrum-ltc daemon -d'")
+                print_msg("Daemon not running; try 'electrum-cesc daemon -d'")
                 if not cmd.requires_network:
                     print_msg("To run this command without a daemon, use --offline")
                 sys_exit(1)
