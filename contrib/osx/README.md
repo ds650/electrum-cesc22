@@ -4,7 +4,7 @@ Building Mac OS binaries
 ✗ _This script does not produce reproducible output (yet!).
    Please help us remedy this._
 
-This guide explains how to build Electrum-LTC binaries for macOS systems.
+This guide explains how to build Electrum-CESC binaries for macOS systems.
 
 
 ## 1. Building the binary
@@ -46,12 +46,12 @@ On newer Mac, run:
 Move `prebuilt_qr` to El Capitan: `contrib/osx/CalinsQRReader/prebuilt_qr`.
 
 
-#### 1.2 Build Electrum-LTC
+#### 1.2 Build Electrum-CESC
 
-    cd electrum-ltc
+    cd electrum-cesc
     ./contrib/osx/make_osx
     
-This creates both a folder named Electrum-LTC.app and the .dmg file.
+This creates both a folder named Electrum-CESC.app and the .dmg file.
 
 
 ## 2. Building the image deterministically (WIP)
@@ -68,5 +68,5 @@ Copy the Electrum-LTC.app directory over and install the dependencies, e.g.:
     
 Then you can just invoke `package.sh` with the path to the app:
 
-    cd electrum-ltc
-    ./contrib/osx/package.sh ~/Electrum-LTC.app/
+    cd electrum-cesc
+    ./contrib/osx/package.sh ~/Electrum-CESC.app/
