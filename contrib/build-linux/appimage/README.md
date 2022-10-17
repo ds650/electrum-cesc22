@@ -1,4 +1,4 @@
-AppImage binary for Electrum-LTC
+AppImage binary for Electrum-CESC
 ================================
 
 ✓ _This binary should be reproducible, meaning you should be able to generate
@@ -25,7 +25,7 @@ see [issue #5159](https://github.com/spesmilo/electrum/issues/5159).
 2. Build image
 
     ```
-    $ sudo docker build -t electrum-ltc-appimage-builder-img contrib/build-linux/appimage
+    $ sudo docker build -t electrum-cesc-appimage-builder-img contrib/build-linux/appimage
     ```
 
 3. Build binary
@@ -33,9 +33,9 @@ see [issue #5159](https://github.com/spesmilo/electrum/issues/5159).
     ```
     $ sudo docker run -it \
         --name electrum-ltc-appimage-builder-cont \
-        -v $PWD:/opt/electrum-ltc \
+        -v $PWD:/opt/electrum-cesc \
         --rm \
-        --workdir /opt/electrum-ltc/contrib/build-linux/appimage \
+        --workdir /opt/electrum-cesc/contrib/build-linux/appimage \
         electrum-ltc-appimage-builder-img \
         ./build.sh
     ```
