@@ -22,9 +22,9 @@ from PyQt5.QtWidgets import (QPushButton, QLabel, QMessageBox, QHBoxLayout,
                              QFileDialog, QWidget, QToolButton, QTreeView, QPlainTextEdit,
                              QHeaderView, QApplication, QToolTip, QTreeWidget, QStyledItemDelegate)
 
-from electrum_ltc.i18n import _, languages
-from electrum_ltc.util import FileImportFailed, FileExportFailed, make_aiohttp_session, resource_path
-from electrum_ltc.util import PR_UNPAID, PR_PAID, PR_EXPIRED, PR_INFLIGHT, PR_UNKNOWN
+from electrum_cesc.i18n import _, languages
+from electrum_cesc.util import FileImportFailed, FileExportFailed, make_aiohttp_session, resource_path
+from electrum_cesc.util import PR_UNPAID, PR_PAID, PR_EXPIRED, PR_INFLIGHT, PR_UNKNOWN
 
 if TYPE_CHECKING:
     from .main_window import ElectrumWindow
