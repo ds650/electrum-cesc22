@@ -3,10 +3,10 @@
 import sys
 import asyncio
 
-from electrum_ltc import bitcoin
-from electrum_ltc.network import Network
-from electrum_ltc.util import json_encode, print_msg, create_and_start_event_loop, log_exceptions
-from electrum_ltc.simple_config import SimpleConfig
+from electrum_cesc import bitcoin
+from electrum_cesc.network import Network
+from electrum_cesc.util import json_encode, print_msg, create_and_start_event_loop, log_exceptions
+from electrum_cesc.simple_config import SimpleConfig
 
 
 try:
