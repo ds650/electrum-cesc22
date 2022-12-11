@@ -29,16 +29,16 @@ from xmlrpc.client import ServerProxy
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QPushButton
 
-from electrum_ltc import util, keystore, ecc, crypto
-from electrum_ltc import transaction
-from electrum_ltc.bip32 import BIP32Node
-from electrum_ltc.plugin import BasePlugin, hook
-from electrum_ltc.i18n import _
-from electrum_ltc.wallet import Multisig_Wallet
-from electrum_ltc.util import bh2u, bfh
+from electrum_cesc import util, keystore, ecc, crypto
+from electrum_cesc import transaction
+from electrum_cesc.bip32 import BIP32Node
+from electrum_cesc.plugin import BasePlugin, hook
+from electrum_cesc.i18n import _
+from electrum_cesc.wallet import Multisig_Wallet
+from electrum_cesc.util import bh2u, bfh
 
-from electrum_ltc.gui.qt.transaction_dialog import show_transaction
-from electrum_ltc.gui.qt.util import WaitingDialog
+from electrum_cesc.gui.qt.transaction_dialog import show_transaction
+from electrum_cesc.gui.qt.util import WaitingDialog
 
 import sys
 import traceback
