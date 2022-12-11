@@ -3,12 +3,12 @@ import getpass
 import datetime
 import logging
 
-from electrum_ltc import WalletStorage, Wallet
-from electrum_ltc.util import format_satoshis
-from electrum_ltc.bitcoin import is_address, COIN, TYPE_ADDRESS
-from electrum_ltc.transaction import TxOutput
-from electrum_ltc.network import TxBroadcastError, BestEffortRequestFailed
-from electrum_ltc.logging import console_stderr_handler
+from electrum_cesc import WalletStorage, Wallet
+from electrum_cesc.util import format_satoshis
+from electrum_cesc.bitcoin import is_address, COIN, TYPE_ADDRESS
+from electrum_cesc.transaction import TxOutput
+from electrum_cesc.network import TxBroadcastError, BestEffortRequestFailed
+from electrum_cesc.logging import console_stderr_handler
 
 _ = lambda x:x  # i18n
 
@@ -23,7 +23,7 @@ class ElectrumGui:
         self.network = daemon.network
         storage = WalletStorage(config.get_wallet_path())
         if not storage.file_exists:
-            print("Wallet not found. try 'electrum-ltc create'")
+            print("Wallet not found. try 'electrum-cesc create'")
             exit()
         if storage.is_encrypted():
             password = getpass.getpass('Password:', stream=None)
@@ -171,7 +171,7 @@ class ElectrumGui:
 
     def do_send(self):
         if not is_address(self.str_recipient):
-            print(_('Invalid Litecoin address'))
+            print(_('Invalid Cryptoescudo address'))
             return
         try:
             amount = int(Decimal(self.str_amount) * COIN)
@@ -221,12 +221,12 @@ class ElectrumGui:
             #self.update_contacts_tab()
 
     def network_dialog(self):
-        print("use 'electrum-ltc setconfig server/proxy' to change your network settings")
+        print("use 'electrum-cesc setconfig server/proxy' to change your network settings")
         return True
 
 
     def settings_dialog(self):
-        print("use 'electrum-ltc setconfig' to change your settings")
+        print("use 'electrum-cesc setconfig' to change your settings")
         return True
 
     def password_dialog(self):
