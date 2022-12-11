@@ -10,12 +10,12 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal
 from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QLabel, QProgressBar,
                              QHBoxLayout, QPushButton)
 
-from electrum_ltc import version
-from electrum_ltc import constants
-from electrum_ltc import ecc
-from electrum_ltc.i18n import _
-from electrum_ltc.util import make_aiohttp_session
-from electrum_ltc.logging import Logger
+from electrum_cesc import version
+from electrum_cesc import constants
+from electrum_cesc import ecc
+from electrum_cesc.i18n import _
+from electrum_cesc.util import make_aiohttp_session
+from electrum_cesc.logging import Logger
 
 
 class UpdateCheck(QWidget, Logger):
@@ -29,7 +29,7 @@ class UpdateCheck(QWidget, Logger):
     def __init__(self, main_window, latest_version=None):
         self.main_window = main_window
         QWidget.__init__(self)
-        self.setWindowTitle('Electrum-LTC - ' + _('Update Check'))
+        self.setWindowTitle('Electrum-CESC - ' + _('Update Check'))
         self.content = QVBoxLayout()
         self.content.setContentsMargins(*[10]*4)
 
