@@ -29,12 +29,12 @@ from PyQt5.QtCore import Qt, QItemSelectionModel
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
 from PyQt5.QtWidgets import QHeaderView, QMenu
 
-from electrum_ltc.i18n import _
-from electrum_ltc.util import format_time, PR_UNPAID, PR_PAID, get_request_status
-from electrum_ltc.util import PR_TYPE_ONCHAIN, PR_TYPE_LN
-from electrum_ltc.lnutil import lndecode, RECEIVED
-from electrum_ltc.bitcoin import COIN
-from electrum_ltc import constants
+from electrum_cesc.i18n import _
+from electrum_cesc.util import format_time, PR_UNPAID, PR_PAID, get_request_status
+from electrum_cesc.util import PR_TYPE_ONCHAIN, PR_TYPE_LN
+from electrum_cesc.lnutil import lndecode, RECEIVED
+from electrum_cesc.bitcoin import COIN
+from electrum_cesc import constants
 
 from .util import (MyTreeView, read_QIcon, MONOSPACE_FONT,
                    import_meta_gui, export_meta_gui, pr_icons)
