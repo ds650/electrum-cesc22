@@ -7,15 +7,15 @@ from decimal import Decimal
 import getpass
 import logging
 
-import electrum_ltc as electrum
-from electrum_ltc.util import format_satoshis
-from electrum_ltc.bitcoin import is_address, COIN, TYPE_ADDRESS
-from electrum_ltc.transaction import TxOutput
-from electrum_ltc.wallet import Wallet
-from electrum_ltc.storage import WalletStorage
-from electrum_ltc.network import NetworkParameters, TxBroadcastError, BestEffortRequestFailed
-from electrum_ltc.interface import deserialize_server
-from electrum_ltc.logging import console_stderr_handler
+import electrum_cesc as electrum
+from electrum_cesc.util import format_satoshis
+from electrum_cesc.bitcoin import is_address, COIN, TYPE_ADDRESS
+from electrum_cesc.transaction import TxOutput
+from electrum_cesc.wallet import Wallet
+from electrum_cesc.storage import WalletStorage
+from electrum_cesc.network import NetworkParameters, TxBroadcastError, BestEffortRequestFailed
+from electrum_cesc.interface import deserialize_server
+from electrum_cesc.logging import console_stderr_handler
 
 _ = lambda x:x  # i18n
 
