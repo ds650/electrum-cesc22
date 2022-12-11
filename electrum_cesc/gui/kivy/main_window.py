@@ -59,16 +59,16 @@ from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.uix.label import Label
 from kivy.core.clipboard import Clipboard
 
-Factory.register('TabbedCarousel', module='electrum_ltc.gui.kivy.uix.screens')
+Factory.register('TabbedCarousel', module='electrum_cesc.gui.kivy.uix.screens')
 
 # Register fonts without this you won't be able to use bold/italic...
 # inside markup.
 from kivy.core.text import Label
 Label.register('Roboto',
-               'electrum_ltc/gui/kivy/data/fonts/Roboto.ttf',
-               'electrum_ltc/gui/kivy/data/fonts/Roboto.ttf',
-               'electrum_ltc/gui/kivy/data/fonts/Roboto-Bold.ttf',
-               'electrum_ltc/gui/kivy/data/fonts/Roboto-Bold.ttf')
+               'electrum_cesc/gui/kivy/data/fonts/Roboto.ttf',
+               'electrum_cesc/gui/kivy/data/fonts/Roboto.ttf',
+               'electrum_cesc/gui/kivy/data/fonts/Roboto-Bold.ttf',
+               'electrum_cesc/gui/kivy/data/fonts/Roboto-Bold.ttf')
 
 
 from electrum_ltc.util import (base_units, NoDynamicFeeEstimates, decimal_point_to_base_unit_name,
@@ -178,7 +178,7 @@ class ElectrumWindow(App):
 
     def on_new_intent(self, intent):
         data = intent.getDataString()
-        if intent.getScheme() == 'litecoin':
+        if intent.getScheme() == 'cryptoescudo':
             self.set_URI(data)
         elif intent.getScheme() == 'lightning':
             self.set_ln_invoice(data)
@@ -381,20 +381,20 @@ class ElectrumWindow(App):
             self.send_screen.do_clear()
 
     def on_qr(self, data):
-        from electrum_ltc.bitcoin import base_decode, is_address
+        from electrum_cesc.bitcoin import base_decode, is_address
         data = data.strip()
         if is_address(data):
             self.set_URI(data)
             return
-        if data.startswith('litecoin:'):
+        if data.startswith('cryptoescudo:'):
             self.set_URI(data)
             return
         if data.startswith('ln'):
             self.set_ln_invoice(data)
             return
         # try to decode transaction
-        from electrum_ltc.transaction import Transaction
-        from electrum_ltc.util import bh2u
+        from electrum_cesc.transaction import Transaction
+        from electrum_cesc.util import bh2u
         try:
             text = bh2u(base_decode(data, None, base=43))
             tx = Transaction(text)
@@ -697,7 +697,7 @@ class ElectrumWindow(App):
             d = WalletDialog()
             d.open()
         elif name == 'status':
-            popup = Builder.load_file('electrum_ltc/gui/kivy/uix/ui_screens/'+name+'.kv')
+            popup = Builder.load_file('electrum_cesc/gui/kivy/uix/ui_screens/'+name+'.kv')
             master_public_keys_layout = popup.ids.master_public_keys
             for xpub in self.wallet.get_master_public_keys()[1:]:
                 master_public_keys_layout.add_widget(TopLabel(text=_('Master Public Key')))
@@ -709,7 +709,7 @@ class ElectrumWindow(App):
         elif name.endswith("_dialog"):
             getattr(self, name)()
         else:
-            popup = Builder.load_file('electrum_ltc/gui/kivy/uix/ui_screens/'+name+'.kv')
+            popup = Builder.load_file('electrum_cesc/gui/kivy/uix/ui_screens/'+name+'.kv')
             popup.open()
 
     @profiler
@@ -725,9 +725,9 @@ class ElectrumWindow(App):
 
         #setup lazy imports for mainscreen
         Factory.register('AnimatedPopup',
-                         module='electrum_ltc.gui.kivy.uix.dialogs')
+                         module='electrum_cesc.gui.kivy.uix.dialogs')
         Factory.register('QRCodeWidget',
-                         module='electrum_ltc.gui.kivy.uix.qrcodewidget')
+                         module='electrum_cesc.gui.kivy.uix.qrcodewidget')
 
         # preload widgets. Remove this if you want to load the widgets on demand
         #Cache.append('electrum_ltc_widgets', 'AnimatedPopup', Factory.AnimatedPopup())
@@ -743,7 +743,7 @@ class ElectrumWindow(App):
         self.receive_screen = None
         self.requests_screen = None
         self.address_screen = None
-        self.icon = "electrum_ltc/gui/icons/electrum-ltc.png"
+        self.icon = "electrum_cesc/gui/icons/electrum-cesc.png"
         self.tabs = self.root.ids['tabs']
 
     def update_interfaces(self, dt):
@@ -835,7 +835,7 @@ class ElectrumWindow(App):
             self._trigger_update_status()
 
     def get_max_amount(self):
-        from electrum_ltc.transaction import TxOutput
+        from electrum_cesc.transaction import TxOutput
         if run_hook('abort_send', self):
             return ''
         inputs = self.wallet.get_spendable_coins(None)
@@ -886,8 +886,8 @@ class ElectrumWindow(App):
                 from plyer import notification
             icon = (os.path.dirname(os.path.realpath(__file__))
                     + '/../../' + self.icon)
-            notification.notify('Electrum-LTC', message,
-                            app_icon=icon, app_name='Electrum-LTC')
+            notification.notify('Electrum-CESC', message,
+                            app_icon=icon, app_name='Electrum-CESC')
         except ImportError:
             Logger.Error('Notification: needs plyer; `sudo python3 -m pip install plyer`')
 
@@ -916,7 +916,7 @@ class ElectrumWindow(App):
         self.qr_dialog(label.name, label.data, True)
 
     def show_error(self, error, width='200dp', pos=None, arrow_pos=None,
-        exit=False, icon='atlas://electrum_ltc/gui/kivy/theming/light/error', duration=0,
+        exit=False, icon='atlas://electrum_cesc/gui/kivy/theming/light/error', duration=0,
         modal=False):
         ''' Show an error Message Bubble.
         '''
@@ -928,7 +928,7 @@ class ElectrumWindow(App):
         exit=False, duration=0, modal=False):
         ''' Show an Info Message Bubble.
         '''
-        self.show_error(error, icon='atlas://electrum_ltc/gui/kivy/theming/light/important',
+        self.show_error(error, icon='atlas://electrum_cesc/gui/kivy/theming/light/important',
             duration=duration, modal=modal, exit=exit, pos=pos,
             arrow_pos=arrow_pos)
 
@@ -968,7 +968,7 @@ class ElectrumWindow(App):
             info_bubble.show_arrow = False
             img.allow_stretch = True
             info_bubble.dim_background = True
-            info_bubble.background_image = 'atlas://electrum_ltc/gui/kivy/theming/light/card'
+            info_bubble.background_image = 'atlas://electrum_cesc/gui/kivy/theming/light/card'
         else:
             info_bubble.fs = False
             info_bubble.icon = icon
