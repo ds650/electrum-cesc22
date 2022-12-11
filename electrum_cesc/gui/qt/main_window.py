@@ -47,13 +47,13 @@ from PyQt5.QtWidgets import (QMessageBox, QComboBox, QSystemTrayIcon, QTabWidget
                              QShortcut, QMainWindow, QCompleter, QInputDialog,
                              QWidget, QMenu, QSizePolicy, QStatusBar)
 
-import electrum_ltc as electrum
-from electrum_ltc import (keystore, simple_config, ecc, constants, util, bitcoin, commands,
+import electrum_cesc as electrum
+from electrum_cesc import (keystore, simple_config, ecc, constants, util, bitcoin, commands,
                           coinchooser, paymentrequest)
-from electrum_ltc.bitcoin import COIN, is_address, TYPE_ADDRESS
-from electrum_ltc.plugin import run_hook
-from electrum_ltc.i18n import _
-from electrum_ltc.util import (format_time, format_satoshis, format_fee_satoshis,
+from electrum_cesc.bitcoin import COIN, is_address, TYPE_ADDRESS
+from electrum_cesc.plugin import run_hook
+from electrum_cesc.i18n import _
+from electrum_cesc.util import (format_time, format_satoshis, format_fee_satoshis,
                                format_satoshis_plain, NotEnoughFunds,
                                UserCancelled, NoDynamicFeeEstimates, profiler,
                                export_meta, import_meta, bh2u, bfh, InvalidPassword,
@@ -62,19 +62,19 @@ from electrum_ltc.util import (format_time, format_satoshis, format_fee_satoshis
                                UnknownBaseUnit, DECIMAL_POINT_DEFAULT, UserFacingException,
                                get_new_wallet_name, send_exception_to_crash_reporter,
                                InvalidBitcoinURI, InvoiceError)
-from electrum_ltc.util import PR_TYPE_ONCHAIN, PR_TYPE_LN
-from electrum_ltc.lnutil import PaymentFailure, SENT, RECEIVED
-from electrum_ltc.transaction import Transaction, TxOutput
-from electrum_ltc.address_synchronizer import AddTransactionException
-from electrum_ltc.wallet import (Multisig_Wallet, CannotBumpFee, Abstract_Wallet,
+from electrum_cesc.util import PR_TYPE_ONCHAIN, PR_TYPE_LN
+from electrum_cesc.lnutil import PaymentFailure, SENT, RECEIVED
+from electrum_cesc.transaction import Transaction, TxOutput
+from electrum_cesc.address_synchronizer import AddTransactionException
+from electrum_cesc.wallet import (Multisig_Wallet, CannotBumpFee, Abstract_Wallet,
                                  sweep_preparations, InternalAddressCorruption)
-from electrum_ltc.version import ELECTRUM_VERSION
-from electrum_ltc.network import Network, TxBroadcastError, BestEffortRequestFailed
-from electrum_ltc.exchange_rate import FxThread
-from electrum_ltc.simple_config import SimpleConfig
-from electrum_ltc.logging import Logger
-from electrum_ltc.paymentrequest import PR_PAID
-from electrum_ltc.util import pr_expiration_values
+from electrum_cesc.version import ELECTRUM_VERSION
+from electrum_cesc.network import Network, TxBroadcastError, BestEffortRequestFailed
+from electrum_cesc.exchange_rate import FxThread
+from electrum_cesc.simple_config import SimpleConfig
+from electrum_cesc.logging import Logger
+from electrum_cesc.paymentrequest import PR_PAID
+from electrum_cesc.util import pr_expiration_values
 
 from .exception_window import Exception_Hook
 from .amountedit import AmountEdit, BTCAmountEdit, MyLineEdit, FeerateEdit
@@ -208,7 +208,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         if self.config.get("is_maximized"):
             self.showMaximized()
 
-        self.setWindowIcon(read_QIcon("electrum-ltc.png"))
+        self.setWindowIcon(read_QIcon("electrum-cesc.png"))
         self.init_menubar()
 
         wrtabs = weakref.proxy(tabs)
@@ -250,7 +250,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
 
         # If the option hasn't been set yet
         if config.get('check_updates') is None:
-            choice = self.question(title="Electrum-LTC - " + _("Enable update check"),
+            choice = self.question(title="Electrum-CESC - " + _("Enable update check"),
                                    msg=_("For security reasons we advise that you always use the latest version of Electrum.") + " " +
                                        _("Would you like to be notified when there is a newer version of Electrum available?"))
             config.set_key('check_updates', bool(choice), save=True)
@@ -466,7 +466,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
             self.setGeometry(100, 100, 840, 400)
 
     def watching_only_changed(self):
-        name = "Electrum-LTC Testnet" if constants.net.TESTNET else "Electrum-LTC"
+        name = "Electrum-CESC Testnet" if constants.net.TESTNET else "Electrum-CESC"
         title = '%s %s  -  %s' % (name, ELECTRUM_VERSION,
                                         self.wallet.basename())
         extra = [self.wallet.storage.get('wallet_type', '?')]
@@ -656,9 +656,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
         help_menu.addAction(_("&Check for updates"), self.show_update_check)
-        help_menu.addAction(_("&Official website"), lambda: webopen("https://electrum-ltc.org"))
+        help_menu.addAction(_("&Official website"), lambda: webopen("https://cryptoescudo.pt"))
         help_menu.addSeparator()
-        help_menu.addAction(_("&Documentation"), lambda: webopen("http://docs.electrum.org/")).setShortcut(QKeySequence.HelpContents)
+        help_menu.addAction(_("&Documentation"), lambda: webopen("http://cryptoescudo.pt/")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
         help_menu.addSeparator()
         help_menu.addAction(_("&Donate to server"), self.donate_to_server)
@@ -669,14 +669,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         d = self.network.get_donation_address()
         if d:
             host = self.network.get_parameters().host
-            self.pay_to_URI('litecoin:%s?message=donation for %s'%(d, host))
+            self.pay_to_URI('cryptoescudo:%s?message=donation for %s'%(d, host))
         else:
             self.show_error(_('No donation address for this server'))
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-LTC",
+        QMessageBox.about(self, "Electrum-CESC",
                           (_("Version")+" %s" % ELECTRUM_VERSION + "\n\n" +
-                           _("Electrum's focus is speed, with low resource usage and simplifying Litecoin.") + " " +
+                           _("Electrum's focus is speed, with low resource usage and simplifying Cryptoescudo.") + " " +
                            _("You do not need to perform regular backups, because your wallet can be "
                               "recovered from a secret phrase that you can memorize or write on paper.") + " " +
                            _("Startup times are instant because it operates in conjunction with high-performance "
@@ -693,7 +693,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
             _("Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Electrum-LTC - " + _("Reporting Bugs"), rich_text=True)
+        self.show_message(msg, title="Electrum-CESC - " + _("Reporting Bugs"), rich_text=True)
 
     def notify_transactions(self):
         if self.tx_notification_queue.qsize() == 0:
@@ -733,9 +733,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         if self.tray:
             try:
                 # this requires Qt 5.9
-                self.tray.showMessage("Electrum-LTC", message, read_QIcon("electrum_dark_icon"), 20000)
+                self.tray.showMessage("Electrum-CESC", message, read_QIcon("electrum_dark_icon"), 20000)
             except TypeError:
-                self.tray.showMessage("Electrum-LTC", message, QSystemTrayIcon.Information, 20000)
+                self.tray.showMessage("Electrum-CESC", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -966,7 +966,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         msg = ' '.join([
             _('Expiration date of your request.'),
             _('This information is seen by the recipient if you send them a signed payment request.'),
-            _('Expired requests have to be deleted manually from your list, in order to free the corresponding Litecoin addresses.'),
+            _('Expired requests have to be deleted manually from your list, in order to free the corresponding Cryptoescudo addresses.'),
             _('The Litecoin address never expires and will always be part of this Electrum wallet.'),
         ])
         grid.addWidget(HelpLabel(_('Request expires'), msg), 2, 0)
@@ -1195,7 +1195,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
         self.amount_e = BTCAmountEdit(self.get_decimal_point)
         self.payto_e = PayToEdit(self)
         msg = _('Recipient of the funds.') + '\n\n'\
-              + _('You may enter a Litecoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Litecoin address)')
+              + _('You may enter a Litecoin address, a label from your list of contacts (a list of completions will be proposed), or an alias (email-like address that forwards to a Cryptoescudo address)')
         payto_label = HelpLabel(_('Pay to'), msg)
         grid.addWidget(payto_label, 1, 0)
         grid.addWidget(self.payto_e, 1, 1, 1, -1)
@@ -1639,7 +1639,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger):
 
         for o in outputs:
             if o.address is None:
-                self.show_error(_('Litecoin Address is None'))
+                self.show_error(_('Cryptoescudo Address is None'))
                 return True
             if o.type == TYPE_ADDRESS and not bitcoin.is_address(o.address):
                 self.show_error(_('Invalid Litecoin Address'))
