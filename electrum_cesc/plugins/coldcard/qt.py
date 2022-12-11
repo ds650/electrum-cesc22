@@ -5,11 +5,11 @@ from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtWidgets import QPushButton, QLabel, QVBoxLayout, QWidget, QGridLayout
 from PyQt5.QtWidgets import QFileDialog
 
-from electrum_ltc.i18n import _
-from electrum_ltc.plugin import hook
-from electrum_ltc.wallet import Standard_Wallet, Multisig_Wallet
-from electrum_ltc.gui.qt.util import WindowModalDialog, CloseButton, get_parent_main_window, Buttons
-from electrum_ltc.transaction import Transaction
+from electrum_cesc.i18n import _
+from electrum_cesc.plugin import hook
+from electrum_cesc.wallet import Standard_Wallet, Multisig_Wallet
+from electrum_cesc.gui.qt.util import WindowModalDialog, CloseButton, get_parent_main_window, Buttons
+from electrum_cesc.transaction import Transaction
 
 from .coldcard import ColdcardPlugin, xfp2str
 from ..hw_wallet.qt import QtHandlerBase, QtPluginBase
