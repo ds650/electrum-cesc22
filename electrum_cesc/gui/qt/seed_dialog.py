@@ -28,9 +28,9 @@ from PyQt5.QtGui import QPixmap, QPalette
 from PyQt5.QtWidgets import (QVBoxLayout, QCheckBox, QHBoxLayout, QLineEdit,
                              QLabel, QCompleter, QDialog, QStyledItemDelegate)
 
-from electrum_ltc.i18n import _
-from electrum_ltc.mnemonic import Mnemonic, seed_type
-import electrum_ltc.old_mnemonic
+from electrum_cesc.i18n import _
+from electrum_cesc.mnemonic import Mnemonic, seed_type
+import electrum_cesc.old_mnemonic
 
 from .util import (Buttons, OkButton, WWLabel, ButtonsTextEdit, icon_path,
                    EnterButton, CloseButton, WindowModalDialog, ColorScheme)
@@ -226,7 +226,7 @@ class KeysLayout(QVBoxLayout):
 class SeedDialog(WindowModalDialog):
 
     def __init__(self, parent, seed, passphrase):
-        WindowModalDialog.__init__(self, parent, ('Electrum-LTC - ' + _('Seed')))
+        WindowModalDialog.__init__(self, parent, ('Electrum-CESC - ' + _('Seed')))
         self.setMinimumWidth(400)
         vbox = QVBoxLayout(self)
         title =  _("Your wallet generation seed is:")
