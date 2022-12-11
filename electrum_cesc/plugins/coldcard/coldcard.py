@@ -6,15 +6,15 @@ from struct import pack, unpack
 import os, sys, time, io
 import traceback
 
-from electrum_ltc.bip32 import BIP32Node, InvalidMasterKeyVersionBytes
-from electrum_ltc.i18n import _
-from electrum_ltc.plugin import Device, hook
-from electrum_ltc.keystore import Hardware_KeyStore
-from electrum_ltc.transaction import Transaction, multisig_script
-from electrum_ltc.wallet import Standard_Wallet, Multisig_Wallet
-from electrum_ltc.util import bfh, bh2u, versiontuple, UserFacingException
-from electrum_ltc.base_wizard import ScriptTypeNotSupported
-from electrum_ltc.logging import get_logger
+from electrum_cesc.bip32 import BIP32Node, InvalidMasterKeyVersionBytes
+from electrum_cesc.i18n import _
+from electrum_cesc.plugin import Device, hook
+from electrum_cesc.keystore import Hardware_KeyStore
+from electrum_cesc.transaction import Transaction, multisig_script
+from electrum_cesc.wallet import Standard_Wallet, Multisig_Wallet
+from electrum_cesc.util import bfh, bh2u, versiontuple, UserFacingException
+from electrum_cesc.base_wizard import ScriptTypeNotSupported
+from electrum_cesc.logging import get_logger
 
 from ..hw_wallet import HW_PluginBase
 from ..hw_wallet.plugin import LibraryFoundButUnusable, only_hook_if_libraries_available
