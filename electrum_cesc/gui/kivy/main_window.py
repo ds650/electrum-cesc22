@@ -9,15 +9,15 @@ import threading
 import asyncio
 from typing import TYPE_CHECKING, Optional
 
-from electrum_ltc.bitcoin import TYPE_ADDRESS
-from electrum_ltc.storage import WalletStorage, StorageReadWriteError
-from electrum_ltc.wallet import Wallet, InternalAddressCorruption
-from electrum_ltc.util import profiler, InvalidPassword, send_exception_to_crash_reporter
-from electrum_ltc.plugin import run_hook
-from electrum_ltc.util import format_satoshis, format_satoshis_plain, format_fee_satoshis
-from electrum_ltc.util import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
-from electrum_ltc import blockchain
-from electrum_ltc.network import Network, TxBroadcastError, BestEffortRequestFailed
+from electrum_cesc.bitcoin import TYPE_ADDRESS
+from electrum_cesc.storage import WalletStorage, StorageReadWriteError
+from electrum_cesc.wallet import Wallet, InternalAddressCorruption
+from electrum_cesc.util import profiler, InvalidPassword, send_exception_to_crash_reporter
+from electrum_cesc.plugin import run_hook
+from electrum_cesc.util import format_satoshis, format_satoshis_plain, format_fee_satoshis
+from electrum_cesc.util import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
+from electrum_cesc import blockchain
+from electrum_cesc.network import Network, TxBroadcastError, BestEffortRequestFailed
 from .i18n import _
 
 from kivy.app import App
@@ -52,7 +52,7 @@ util = False
 
 # register widget cache for keeping memory down timeout to forever to cache
 # the data
-Cache.register('electrum_ltc_widgets', timeout=0)
+Cache.register('electrum_cesc_widgets', timeout=0)
 
 from kivy.uix.screenmanager import Screen
 from kivy.uix.tabbedpanel import TabbedPanel
@@ -71,7 +71,7 @@ Label.register('Roboto',
                'electrum_cesc/gui/kivy/data/fonts/Roboto-Bold.ttf')
 
 
-from electrum_ltc.util import (base_units, NoDynamicFeeEstimates, decimal_point_to_base_unit_name,
+from electrum_cesc.util import (base_units, NoDynamicFeeEstimates, decimal_point_to_base_unit_name,
                                base_unit_name_to_decimal_point, NotEnoughFunds, UnknownBaseUnit,
                                DECIMAL_POINT_DEFAULT)
 
@@ -80,9 +80,9 @@ from .uix.dialogs.lightning_channels import LightningChannelsDialog
 
 if TYPE_CHECKING:
     from . import ElectrumGui
-    from electrum_ltc.simple_config import SimpleConfig
-    from electrum_ltc.wallet import Abstract_Wallet
-    from electrum_ltc.plugin import Plugins
+    from electrum_cesc.simple_config import SimpleConfig
+    from electrum_cesc.wallet import Abstract_Wallet
+    from electrum_cesc.plugin import Plugins
 
 
 class ElectrumWindow(App):
@@ -130,7 +130,7 @@ class ElectrumWindow(App):
         from .uix.dialogs.choice_dialog import ChoiceDialog
         protocol = 's'
         def cb2(host):
-            from electrum_ltc import constants
+            from electrum_cesc import constants
             pp = servers.get(host, constants.net.DEFAULT_PORTS)
             port = pp.get(protocol, '')
             popup.ids.host.text = host
@@ -499,7 +499,7 @@ class ElectrumWindow(App):
         currentActivity.startActivity(it)
 
     def build(self):
-        return Builder.load_file('electrum_ltc/gui/kivy/main.kv')
+        return Builder.load_file('electrum_cesc/gui/kivy/main.kv')
 
     def _pause(self):
         if platform == 'android':
