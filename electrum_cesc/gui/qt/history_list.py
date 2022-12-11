@@ -39,19 +39,19 @@ from PyQt5.QtWidgets import (QMenu, QHeaderView, QLabel, QMessageBox,
                              QPushButton, QComboBox, QVBoxLayout, QCalendarWidget,
                              QGridLayout)
 
-from electrum_ltc.address_synchronizer import TX_HEIGHT_LOCAL, TX_HEIGHT_FUTURE
-from electrum_ltc.i18n import _
-from electrum_ltc.util import (block_explorer_URL, profiler, TxMinedInfo,
+from electrum_cesc.address_synchronizer import TX_HEIGHT_LOCAL, TX_HEIGHT_FUTURE
+from electrum_cesc.i18n import _
+from electrum_cesc.util import (block_explorer_URL, profiler, TxMinedInfo,
                                OrderedDictWithIndex, timestamp_to_datetime,
                                Satoshis, format_time)
-from electrum_ltc.logging import get_logger, Logger
+from electrum_cesc.logging import get_logger, Logger
 
 from .util import (read_QIcon, MONOSPACE_FONT, Buttons, CancelButton, OkButton,
                    filename_field, MyTreeView, AcceptFileDragDrop, WindowModalDialog,
                    CloseButton, webopen)
 
 if TYPE_CHECKING:
-    from electrum_ltc.wallet import Abstract_Wallet
+    from electrum_cesc.wallet import Abstract_Wallet
     from .main_window import ElectrumWindow
 
 
@@ -59,9 +59,9 @@ _logger = get_logger(__name__)
 
 
 try:
-    from electrum_ltc.plot import plot_history, NothingToPlotException
+    from electrum_cesc.plot import plot_history, NothingToPlotException
 except:
-    _logger.info("could not import electrum_ltc.plot. This feature needs matplotlib to be installed.")
+    _logger.info("could not import electrum_cesc.plot. This feature needs matplotlib to be installed.")
     plot_history = None
 
 # note: this list needs to be kept in sync with another in kivy
@@ -673,7 +673,7 @@ class HistoryList(MyTreeView, AcceptFileDragDrop):
         d = WindowModalDialog(self, _('Export History'))
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
-        defaultname = os.path.expanduser('~/electrum-ltc-history.csv')
+        defaultname = os.path.expanduser('~/electrum-cesc-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
