@@ -29,16 +29,16 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QMenu, QHeaderView
 from PyQt5.QtCore import Qt, QItemSelectionModel
 
-from electrum_ltc.i18n import _
-from electrum_ltc.util import format_time, age, get_request_status
-from electrum_ltc.util import PR_TYPE_ONCHAIN, PR_TYPE_LN
-from electrum_ltc.util import PR_UNPAID, PR_EXPIRED, PR_PAID, PR_UNKNOWN, PR_INFLIGHT, pr_tooltips
-from electrum_ltc.lnutil import SENT, RECEIVED
-from electrum_ltc.plugin import run_hook
-from electrum_ltc.wallet import InternalAddressCorruption
-from electrum_ltc.bitcoin import COIN
-from electrum_ltc.lnaddr import lndecode
-import electrum_ltc.constants as constants
+from electrum_cesc.i18n import _
+from electrum_cesc.util import format_time, age, get_request_status
+from electrum_cesc.util import PR_TYPE_ONCHAIN, PR_TYPE_LN
+from electrum_cesc.util import PR_UNPAID, PR_EXPIRED, PR_PAID, PR_UNKNOWN, PR_INFLIGHT, pr_tooltips
+from electrum_cesc.lnutil import SENT, RECEIVED
+from electrum_cesc.plugin import run_hook
+from electrum_cesc.wallet import InternalAddressCorruption
+from electrum_cesc.bitcoin import COIN
+from electrum_cesc.lnaddr import lndecode
+import electrum_cesc.constants as constants
 
 from .util import MyTreeView, pr_icons, read_QIcon, webopen
 
