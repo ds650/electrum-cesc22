@@ -7,10 +7,10 @@ import platform
 
 from PyQt5.QtWidgets import (QComboBox, QGridLayout, QLabel, QPushButton)
 
-from electrum_ltc.plugin import BasePlugin, hook
-from electrum_ltc.gui.qt.util import WaitingDialog, EnterButton, WindowModalDialog, read_QIcon
-from electrum_ltc.i18n import _
-from electrum_ltc.logging import get_logger
+from electrum_cesc.plugin import BasePlugin, hook
+from electrum_cesc.gui.qt.util import WaitingDialog, EnterButton, WindowModalDialog, read_QIcon
+from electrum_cesc.i18n import _
+from electrum_cesc.logging import get_logger
 
 
 _logger = get_logger(__name__)
