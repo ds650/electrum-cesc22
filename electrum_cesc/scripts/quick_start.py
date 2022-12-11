@@ -1,11 +1,11 @@
 import os
 
-from electrum_ltc.simple_config import SimpleConfig
-from electrum_ltc import constants
-from electrum_ltc.daemon import Daemon
-from electrum_ltc.storage import WalletStorage
-from electrum_ltc.wallet import Wallet, create_new_wallet
-from electrum_ltc.commands import Commands
+from electrum_cesc.simple_config import SimpleConfig
+from electrum_cesc import constants
+from electrum_cesc.daemon import Daemon
+from electrum_cesc.storage import WalletStorage
+from electrum_cesc.wallet import Wallet, create_new_wallet
+from electrum_cesc.commands import Commands
 
 
 config = SimpleConfig({"testnet": True})  # to use ~/.electrum-ltc/testnet as datadir
