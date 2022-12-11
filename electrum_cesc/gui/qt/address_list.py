@@ -29,11 +29,11 @@ from PyQt5.QtCore import Qt, QPersistentModelIndex, QModelIndex
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QFont
 from PyQt5.QtWidgets import QAbstractItemView, QComboBox, QLabel, QMenu
 
-from electrum_ltc.i18n import _
-from electrum_ltc.util import block_explorer_URL, profiler
-from electrum_ltc.plugin import run_hook
-from electrum_ltc.bitcoin import is_address
-from electrum_ltc.wallet import InternalAddressCorruption
+from electrum_cesc.i18n import _
+from electrum_cesc.util import block_explorer_URL, profiler
+from electrum_cesc.plugin import run_hook
+from electrum_cesc.bitcoin import is_address
+from electrum_cesc.wallet import InternalAddressCorruption
 
 from .util import MyTreeView, MONOSPACE_FONT, ColorScheme, webopen
 
