@@ -37,13 +37,13 @@ from PyQt5.QtWidgets import (QDialog, QLabel, QPushButton, QHBoxLayout, QVBoxLay
 import qrcode
 from qrcode import exceptions
 
-from electrum_ltc.bitcoin import base_encode
-from electrum_ltc.i18n import _
-from electrum_ltc.plugin import run_hook
-from electrum_ltc import simple_config
-from electrum_ltc.util import bfh
-from electrum_ltc.transaction import SerializationError, Transaction
-from electrum_ltc.logging import get_logger
+from electrum_cesc.bitcoin import base_encode
+from electrum_cesc.i18n import _
+from electrum_cesc.plugin import run_hook
+from electrum_cesc import simple_config
+from electrum_cesc.util import bfh
+from electrum_cesc.transaction import SerializationError, Transaction
+from electrum_cesc.logging import get_logger
 
 from .util import (MessageBoxMixin, read_QIcon, Buttons, CopyButton,
                    MONOSPACE_FONT, ColorScheme, ButtonsLineEdit)
