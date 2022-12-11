@@ -28,7 +28,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (QDialog, QWidget, QLabel, QVBoxLayout, QCheckBox,
                              QGridLayout, QPushButton, QLineEdit, QTabWidget)
 
-from electrum_ltc.i18n import _
+from electrum_cesc.i18n import _
 from .util import HelpLabel, MyTreeView, Buttons
 
 
