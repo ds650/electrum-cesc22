@@ -29,12 +29,12 @@ from typing import NamedTuple, Sequence
 
 from PyQt5.QtGui import QFontMetrics
 
-from electrum_ltc import bitcoin
-from electrum_ltc.util import bfh
-from electrum_ltc.transaction import TxOutput, push_script
-from electrum_ltc.bitcoin import opcodes
-from electrum_ltc.logging import Logger
-from electrum_ltc.lnaddr import LnDecodeException
+from electrum_cesc import bitcoin
+from electrum_cesc.util import bfh
+from electrum_cesc.transaction import TxOutput, push_script
+from electrum_cesc.bitcoin import opcodes
+from electrum_cesc.logging import Logger
+from electrum_cesc.lnaddr import LnDecodeException
 
 from .qrtextedit import ScanQRTextEdit
 from .completion_text_edit import CompletionTextEdit
@@ -137,7 +137,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
         self.lightning_invoice = None
         if len(lines) == 1:
             data = lines[0]
-            if data.startswith("litecoin:"):
+            if data.startswith("cryptoescudo:"):
                 self.win.pay_to_URI(data)
                 return
             lower = data.lower()
@@ -224,7 +224,7 @@ class PayToEdit(CompletionTextEdit, ScanQRTextEdit, Logger):
 
     def qr_input(self):
         data = super(PayToEdit,self).qr_input()
-        if data.startswith("litecoin:"):
+        if data.startswith("cryptoescudo:"):
             self.win.pay_to_URI(data)
             # TODO: update fee
 
