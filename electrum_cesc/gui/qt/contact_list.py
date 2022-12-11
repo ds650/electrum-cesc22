@@ -29,10 +29,10 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt, QPersistentModelIndex, QModelIndex
 from PyQt5.QtWidgets import (QAbstractItemView, QMenu)
 
-from electrum_ltc.i18n import _
-from electrum_ltc.bitcoin import is_address
-from electrum_ltc.util import block_explorer_URL
-from electrum_ltc.plugin import run_hook
+from electrum_cesc.i18n import _
+from electrum_cesc.bitcoin import is_address
+from electrum_cesc.util import block_explorer_URL
+from electrum_cesc.plugin import run_hook
 
 from .util import MyTreeView, import_meta_gui, export_meta_gui, webopen
 
