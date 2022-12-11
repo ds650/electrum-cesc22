@@ -39,10 +39,10 @@ from PyQt5.QtWidgets import (QMessageBox, QComboBox, QSystemTrayIcon, QTabWidget
                              QShortcut, QMainWindow, QCompleter, QInputDialog,
                              QWidget, QMenu, QSizePolicy, QStatusBar)
 
-import electrum_ltc as electrum
-from electrum_ltc.i18n import _
-from electrum_ltc import util, coinchooser, paymentrequest
-from electrum_ltc.util import (format_time, format_satoshis, format_fee_satoshis,
+import electrum_cesc as electrum
+from electrum_cesc.i18n import _
+from electrum_cesc import util, coinchooser, paymentrequest
+from electrum_cesc.util import (format_time, format_satoshis, format_fee_satoshis,
                                format_satoshis_plain, NotEnoughFunds,
                                UserCancelled, NoDynamicFeeEstimates, profiler,
                                export_meta, import_meta, bh2u, bfh, InvalidPassword,
@@ -60,8 +60,8 @@ from .util import (read_QIcon, ColorScheme, text_dialog, icon_path, WaitingDialo
                        ButtonsLineEdit, CopyCloseButton, import_meta_gui, export_meta_gui,
                        filename_field, address_field, char_width_in_lineedit, webopen)
 
-from electrum_ltc.i18n import languages
-from electrum_ltc import qrscanner
+from electrum_cesc.i18n import languages
+from electrum_cesc import qrscanner
 
 class SettingsDialog(WindowModalDialog):
 
@@ -282,7 +282,7 @@ open. For this to work, your computer needs to be online regularly.""")
         # units
         units = base_units_list
         msg = (_('Base unit of your wallet.')
-               + '\n1 LTC = 1000 mLTC. 1 mLTC = 1000 uLTC. 1 uLTC = 100 sat.\n'
+               + '\n1 CESC = 1000 mCESC. 1 mCESC = 1000 uCESC. 1 uCESC = 100 sat.\n'
                + _('This setting affects the Send tab, and all balance related fields.'))
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
