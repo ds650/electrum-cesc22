@@ -42,13 +42,13 @@ from PyQt5.QtWidgets import (QApplication, QSystemTrayIcon, QWidget, QMenu,
 from PyQt5.QtCore import QObject, pyqtSignal, QTimer
 import PyQt5.QtCore as QtCore
 
-from electrum_ltc.i18n import _, set_language
-from electrum_ltc.plugin import run_hook
-from electrum_ltc.base_wizard import GoBack
-from electrum_ltc.util import (UserCancelled, profiler,
+from electrum_cesc.i18n import _, set_language
+from electrum_cesc.plugin import run_hook
+from electrum_cesc.base_wizard import GoBack
+from electrum_cesc.util import (UserCancelled, profiler,
                                WalletFileException, BitcoinException, get_new_wallet_name)
-from electrum_ltc.wallet import Wallet, Abstract_Wallet
-from electrum_ltc.logging import Logger
+from electrum_cesc.wallet import Wallet, Abstract_Wallet
+from electrum_cesc.logging import Logger
 
 from .installwizard import InstallWizard, WalletAlreadyOpenInMemory
 from .util import get_default_language, read_QIcon, ColorScheme, custom_message_box
@@ -58,9 +58,9 @@ from .stylesheet_patcher import patch_qt_stylesheet
 from .lightning_dialog import LightningDialog
 
 if TYPE_CHECKING:
-    from electrum_ltc.daemon import Daemon
-    from electrum_ltc.simple_config import SimpleConfig
-    from electrum_ltc.plugin import Plugins
+    from electrum_cesc.daemon import Daemon
+    from electrum_cesc.simple_config import SimpleConfig
+    from electrum_cesc.plugin import Plugins
 
 
 class OpenFileEventFilter(QObject):
@@ -162,7 +162,7 @@ class ElectrumGui(Logger):
             submenu.addAction(_("Close"), window.close)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        m.addAction(_("Exit Electrum-LTC"), self.close)
+        m.addAction(_("Exit Electrum-CESC"), self.close)
 
     def tray_icon(self):
         if self.dark_icon:
