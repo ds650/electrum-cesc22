@@ -30,10 +30,10 @@ import PyQt5.QtCore as QtCore
 from PyQt5.QtWidgets import (QWidget, QLabel, QPushButton, QTextEdit,
                              QMessageBox, QHBoxLayout, QVBoxLayout)
 
-from electrum_ltc.i18n import _
-from electrum_ltc.base_crash_reporter import BaseCrashReporter
-from electrum_ltc.logging import Logger
-from electrum_ltc import constants
+from electrum_cesc.i18n import _
+from electrum_cesc.base_crash_reporter import BaseCrashReporter
+from electrum_cesc.logging import Logger
+from electrum_cesc import constants
 
 from .util import MessageBoxMixin, read_QIcon, WaitingDialog
 
@@ -46,7 +46,7 @@ class Exception_Window(BaseCrashReporter, QWidget, MessageBoxMixin, Logger):
         self.main_window = main_window
 
         QWidget.__init__(self)
-        self.setWindowTitle('Electrum-LTC - ' + _('An Error Occurred'))
+        self.setWindowTitle('Electrum-CESC - ' + _('An Error Occurred'))
         self.setMinimumSize(600, 300)
 
         Logger.__init__(self)
