@@ -14,21 +14,21 @@ from PyQt5.QtWidgets import (QWidget, QDialog, QLabel, QHBoxLayout, QMessageBox,
                              QVBoxLayout, QLineEdit, QFileDialog, QPushButton,
                              QGridLayout, QSlider, QScrollArea, QApplication)
 
-from electrum_ltc.wallet import Wallet, Abstract_Wallet
-from electrum_ltc.storage import WalletStorage, StorageReadWriteError
-from electrum_ltc.util import UserCancelled, InvalidPassword, WalletFileException
-from electrum_ltc.base_wizard import BaseWizard, HWD_SETUP_DECRYPT_WALLET, GoBack
-from electrum_ltc.i18n import _
+from electrum_cesc.wallet import Wallet, Abstract_Wallet
+from electrum_cesc.storage import WalletStorage, StorageReadWriteError
+from electrum_cesc.util import UserCancelled, InvalidPassword, WalletFileException
+from electrum_cesc.base_wizard import BaseWizard, HWD_SETUP_DECRYPT_WALLET, GoBack
+from electrum_cesc.i18n import _
 
 from .seed_dialog import SeedLayout, KeysLayout
 from .network_dialog import NetworkChoiceLayout
 from .util import (MessageBoxMixin, Buttons, icon_path, ChoicesLayout, WWLabel,
                    InfoButton, char_width_in_lineedit)
 from .password_dialog import PasswordLayout, PasswordLayoutForHW, PW_NEW
-from electrum_ltc.plugin import run_hook, Plugins
+from electrum_cesc.plugin import run_hook, Plugins
 
 if TYPE_CHECKING:
-    from electrum_ltc.simple_config import SimpleConfig
+    from electrum_cesc.simple_config import SimpleConfig
 
 
 MSG_ENTER_PASSWORD = _("Choose a password to encrypt your wallet keys.") + '\n'\
@@ -122,7 +122,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
     def __init__(self, config: 'SimpleConfig', app: QApplication, plugins: 'Plugins'):
         QDialog.__init__(self, None)
         BaseWizard.__init__(self, config, plugins)
-        self.setWindowTitle('Electrum-LTC  -  ' + _('Install Wizard'))
+        self.setWindowTitle('Electrum-CESC  -  ' + _('Install Wizard'))
         self.app = app
         self.config = config
         self.setMinimumSize(600, 400)
@@ -164,7 +164,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
         hbox.setStretchFactor(scroll, 1)
         outer_vbox.addLayout(hbox)
         outer_vbox.addLayout(Buttons(self.back_button, self.next_button))
-        self.set_icon('electrum-ltc.png')
+        self.set_icon('electrum-cesc.png')
         self.show()
         self.raise_()
         self.refresh_gui()  # Need for QT on MacOSX.  Lame.
@@ -191,7 +191,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
         hbox2.addWidget(self.pw_e)
         hbox2.addStretch()
         vbox.addLayout(hbox2)
-        self.set_layout(vbox, title=_('Electrum-LTC wallet'))
+        self.set_layout(vbox, title=_('Electrum-CESC wallet'))
 
         temp_storage = None  # type: Optional[WalletStorage]
         wallet_folder = os.path.dirname(path)
