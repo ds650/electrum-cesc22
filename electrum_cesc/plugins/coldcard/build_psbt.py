@@ -9,13 +9,13 @@ from struct import pack, unpack
 from electrum_ltc.transaction import (Transaction, multisig_script, parse_redeemScript_multisig,
                                       NotRecognizedRedeemScript)
 
-from electrum_ltc.logging import get_logger
-from electrum_ltc.wallet import Standard_Wallet, Multisig_Wallet, Abstract_Wallet
-from electrum_ltc.keystore import xpubkey_to_pubkey, Xpub
-from electrum_ltc.util import bfh, bh2u
-from electrum_ltc.crypto import hash_160, sha256
-from electrum_ltc.bitcoin import DecodeBase58Check
-from electrum_ltc.i18n import _
+from electrum_cesc.logging import get_logger
+from electrum_cesc.wallet import Standard_Wallet, Multisig_Wallet, Abstract_Wallet
+from electrum_cesc.keystore import xpubkey_to_pubkey, Xpub
+from electrum_cesc.util import bfh, bh2u
+from electrum_cesc.crypto import hash_160, sha256
+from electrum_cesc.bitcoin import DecodeBase58Check
+from electrum_cesc.i18n import _
 
 from .basic_psbt import (
         PSBT_GLOBAL_UNSIGNED_TX, PSBT_GLOBAL_XPUB, PSBT_IN_NON_WITNESS_UTXO, PSBT_IN_WITNESS_UTXO,
